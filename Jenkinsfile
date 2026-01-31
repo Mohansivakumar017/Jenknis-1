@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Stop & Remove Old Container') {
+        stage('Stop Old Container') {
             steps {
                 sh '''
                 docker stop contnr || true
@@ -26,13 +26,11 @@ pipeline {
 
         stage('Remove Old Image') {
             steps {
-                sh '''
-                docker rmi img || true
-                '''
+                sh 'docker rmi img || true'
             }
         }
 
-        stage('Docker Image Build') {
+        stage('Docker Build') {
             steps {
                 sh 'docker build -t img .'
             }
