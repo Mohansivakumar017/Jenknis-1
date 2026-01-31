@@ -18,8 +18,8 @@ pipeline {
         stage('Stop & Remove Old Container') {
             steps {
                 sh '''
-                docker stop azure || true
-                docker rm azure || true
+                docker stop contnr || true
+                docker rm contnr || true
                 '''
             }
         }
@@ -27,8 +27,7 @@ pipeline {
         stage('Remove Old Image') {
             steps {
                 sh '''
-                docker rmi mohan || true
-                docker rmi eswar || true
+                docker rmi img || true
                 '''
             }
         }
@@ -41,7 +40,7 @@ pipeline {
 
         stage('Docker Deploy') {
             steps {
-                sh 'docker run -d -p 6060:8080 --name contnr amazon'
+                sh 'docker run -d -p 6060:8080 --name contnr img'
             }
         }
     }
